@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WPF_CF.UserControlLoai"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel>
+    <Label Content="Form lập Loại Sản Phẩm"/>
+    <Grid Margin="50,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+
+                <RowDefinition/>
+
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0" Text="Tên Loại SP"/>
+            <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtTen"/>
+        
+    </Grid>
+    <Button Margin="50,5" Content="Tạo Loại" x:Name="btnThemLoai" Click="btnThemLoai_Click"/>
+
+
+    <DataGrid Margin="10" AutoGenerateColumns="False" x:Name="dg" 
+                  SelectedValuePath="Id"  LoadingRowDetails="dg_LoadingRowDetails" SelectionChanged="dg_SelectionChanged">
+        <DataGrid.Columns>
+
+            <DataGridTextColumn Header="Mã" Binding="{Binding Id}" />
+            <DataGridTextColumn Header="Tên" Binding="{Binding Name}"/>
+            
+            <DataGridTemplateColumn>
+                <DataGridTemplateColumn.CellTemplate>
+                    <DataTemplate>
+                            <Button  x:Name="btnXoa" Click="btnXoa_Click" Width="25" Height="25">
+                                <Image Source="C:\Users\TRUONG\Desktop\TTTN\Wpf\Wpf\icon\trash.png"></Image>
+                            </Button>
+
+                    </DataTemplate>
+                </DataGridTemplateColumn.CellTemplate>
+            </DataGridTemplateColumn>
+            
+        </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Expander>
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="Mã Loại"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Tên Tên"/>
+                                
+                                <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtMaLoai" IsReadOnly="True"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtTenLoai"/>
+                                
+
+                            </Grid>
+                            <Button Margin="10"  Width="60" Content="Sửa" x:Name="btnSua" Click="btnSua_Click"/>
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
+                                

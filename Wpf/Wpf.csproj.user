@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="profile.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControlNhanVien.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AdminAplication.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NhanVienApplication.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="profile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlDonHang.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlKhachHang.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlLoai.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlNhanVien.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlProduct.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlSize.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,171 @@
+﻿<UserControl x:Class="WPF_CF.UserControlDonHang"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CF"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <StackPanel Margin="10">
+        <Expander Header="Quản lý Đơn Hàng">
+            <StackPanel>
+                <Label Content="Form chi tiết Đơn Hàng"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên hàng"/>
+                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Gía  Bán"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Số lượng"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Size"/>
+
+                    <ComboBox Grid.Row="1" Grid.Column="0" x:Name="cmbSanPham" 
+                              SelectedValuePath="Sanphamid" DisplayMemberPath="TenSp" SelectionChanged="cmbSanPham_SelectionChanged"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" IsReadOnly="True" x:Name="txtGia"
+                             Text="{Binding ElementName=cmbSanPham,Path=SelectedItem.Gia}"/>
+                    <TextBox Grid.Row="1" Grid.Column="2" x:Name="txtSoluong" Text="1"/>
+                    <ComboBox x:Name="cmbSize" Grid.Row="1" Grid.Column="3" SelectedValuePath="Ctsizeid" DisplayMemberPath="Name"></ComboBox>
+                    <Button Grid.Row="1" Grid.Column="4" x:Name="btnChonhang" 
+                            Content="Chọn hàng hóa" Click="btnChonhang_Click"/>
+                    
+                </Grid>
+
+                <Label Content="Danh sách chi tiết hóa đơn"/>
+                <DataGrid x:Name="dgCTHD" AutoGenerateColumns="False" SelectedValuePath="CtdonHangId">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Mã hàng" Binding="{Binding CtdonHangId}"/>
+                        <DataGridTextColumn Header="Tên hàng" Binding="{Binding TenSp}"/>
+                        <DataGridTextColumn Header="Đơn giá" Binding="{Binding Gia}"/>
+                        <DataGridTextColumn Header="Số lượng" Binding="{Binding SoLuong}"/>
+                        <DataGridTextColumn Header="Size" Binding="{Binding Size}"/>
+                        <DataGridTextColumn Header="Thành tiền" Binding="{Binding Thanhtien}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  x:Name="btnXoa" Click="btnXoa_Click_2" Width="25" Height="25">
+                                        <Image Source="C:\Users\TRUONG\Desktop\TTTN\Wpf\Wpf\icon\garbage.png"></Image>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  x:Name="btnTang" Click="btnXoa_Click_1"  Width="25" Height="25">
+                                        <Image Source="C:\Users\TRUONG\Desktop\TTTN\Wpf\Wpf\icon\add.png"></Image>
+                                    </Button>
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button  x:Name="btnGiam" Click="btnGiam_Click"  Width="25" Height="25">
+                                        <Button.Content>
+                                            <Image Source="C:\Users\TRUONG\Desktop\TTTN\Wpf\Wpf\icon\minus.png"></Image>
+
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Form lập hóa đơn"/>
+                <Grid Margin="50,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="4*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Mã hóa đơn"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Ngày lập hóa đơn"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Mã khách hàng"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="Tổng tiền hóa đơn"/>
+
+                    <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtMaHd" />
+                    <DatePicker Grid.Column="1" Grid.Row="1" x:Name="dpNgaylaphd"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" x:Name="cmbKhachHang" SelectedValuePath="Username" DisplayMemberPath="Username"></ComboBox>
+                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtThanhtienhd" IsReadOnly="True"/>
+                    
+
+                </Grid>
+                <Button Margin="50,5" Content="Lập hóa đơn" x:Name="btnLaphd" Click="btnLaphd_Click"/>
+            </StackPanel>
+        </Expander>
+        <Label Content="Danh sách hóa đơn"/>
+        <DataGrid x:Name="dgHoadon" AutoGenerateColumns="False" LoadingRowDetails="dgHoadon_LoadingRowDetails"  SelectedValuePath="DonHangId"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Số hóa đơn" Binding="{Binding DonHangId}"/>
+                <DataGridTextColumn Header="Ngày lập hóa đơn" Binding="{Binding NgayTaoDon}"/>
+                <DataGridTextColumn Header="Tên Nhân Viên" Binding="{Binding NhanVienId}"/>
+                <DataGridTextColumn Header="Trạng Thái" Binding="{Binding TinhTrang}"/>
+                <DataGridTextColumn Header="Tổng Tiền" Binding="{Binding TongTien}"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Xóa" x:Name="btnXoa" Click="btnXoa_Click"/>
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+                <DataTemplate>
+                    <Expander Header="Chi tiết hóa đơn">
+                        <StackPanel>
+                            <Grid Margin="70,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Số hóa đơn"/>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Ngày lập hóa đơn"/>
+                                <TextBlock Grid.Column="0" Grid.Row="2" Text="Tên khách hàng"/>
+                                <TextBlock Grid.Column="0" Grid.Row="3" Text="Tổng tiền hóa đơn"/>
+                                
+                                <TextBox Grid.Column="1" Grid.Row="0" x:Name="txtSohd" IsReadOnly="True"/>
+                                <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtNgaylaphd" IsReadOnly="True"/>
+                                <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtTenkh" IsReadOnly="True"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtThanhtienhd" IsReadOnly="True"/>
+
+                            </Grid>
+                            <Label Margin="20,0" Content="Danh sách chi tiết hóa đơn"/>
+                            <DataGrid x:Name="dgCTHD" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Mã hàng" Binding="{Binding Mahang}"/>
+                                    <DataGridTextColumn Header="Tên hàng" Binding="{Binding Tenhang}"/>
+                                    <DataGridTextColumn Header="Đơn giá" Binding="{Binding Dongia}"/>
+                                    <DataGridTextColumn Header="Số lượng" Binding="{Binding Soluong}"/>
+                                    <DataGridTextColumn Header="Thành tiền" Binding="{Binding Thanhtien}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+        </DataGrid>
+    </StackPanel>
+</UserControl>
